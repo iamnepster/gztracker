@@ -1,0 +1,9 @@
+# ⏰ Gleitzeit Tracking Application
+
+Eine Electron Cross-Platform App zum genauen tracken der Arbeitszeit.
+
+## 🧰 Technologien
+
+* https://reactjs.org/[React] 
+* https://tailwindcss.com/[Tailwind]
+* https://www.electronjs.org/[Electron]
