@@ -1,31 +1,53 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
+import useTimer from "../hooks/useTimer"
+import { formatTime } from "../utils/timerFormatter"
 import "./dashboard.css"
 
 export default function Dashboard() {
-  let interval = null
-  const [seconds, setSeconds] = useState(0)
-  const [minutes, setMinutes] = useState(0)
-  const [hours, setHours] = useState(0)
-
-  const handleStart = () => {
-    clearInterval(interval)
-    interval = setInterval(timer, 1000)
-  }
-
-  const timer = () => {
-    setSeconds(seconds + 1)
-  }
-
-  const renderTime = (time) => {
-    return time < 10 ? "0" + time : time
-  }
+  const {
+    timer,
+    isActive,
+    isPaused,
+    handleStart,
+    handleStop,
+    handleResume,
+    handleReset,
+  } = useTimer(0)
 
   return (
     <div className="dashboard-container">
-      <div className="dashboard-timer">00:00:{renderTime(seconds)}</div>
+      <div className="my-16 text-8xl font-digital text-center font-bold">
+        <b>{formatTime(timer)}</b>
+      </div>
       <div className="dashboard-actions">
-        <button onClick={(_) => handleStart()}>Start</button>
-        <button>Stop</button>
+        <button
+          className="px-8 mx-2 bg-cyan-600 disabled:bg-cyan-800 rounded-md"
+          disabled={isActive}
+          onClick={handleStart}
+        >
+          Start
+        </button>
+        {!isPaused ? (
+          <button
+            className="px-8 mx-2 bg-cyan-600 disabled:bg-cyan-800 rounded-md"
+            onClick={handleStop}
+          >
+            Pause
+          </button>
+        ) : (
+          <button
+            className="px-8 mx-2 bg-cyan-600 disabled:bg-cyan-800 rounded-md"
+            onClick={handleResume}
+          >
+            Resume
+          </button>
+        )}
+        <button
+          className="px-8 mx-2 bg-cyan-600 disabled:bg-cyan-800 rounded-md"
+          onClick={handleReset}
+        >
+          Reset
+        </button>
       </div>
     </div>
   )
