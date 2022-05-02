@@ -25,6 +25,12 @@ export default function Dashboard() {
   const timerState = useTimerStore((state) => state.timer)
   const setTimerState = useTimerStore((state) => state.setTimerState)
 
+  // @ts-ignore
+  window.electronApi.onPause(() => {
+    console.log("test")
+
+    handleStop()
+  })
   const {
     timer,
     isActive,
@@ -34,6 +40,8 @@ export default function Dashboard() {
     handleResume,
     handleReset,
   } = useTimer(timerState)
+
+  useEffect(() => {}, [handleStop])
 
   useEffect(
     () => setTimerState({ timer, isActive, isPaused }),

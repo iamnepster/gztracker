@@ -17,6 +17,7 @@ export default function useTimer(inititalState?: TimerModel) {
   }
 
   const handleStop = () => {
+    if (isPaused) return
     clearInterval(intervalRef.current)
     setIsPaused(true)
   }

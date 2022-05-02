@@ -16,7 +16,7 @@
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.3",
     "dayjs": "^1.11.1",
-    "electron": "^18.2.0",
+    "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^8.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -32,7 +32,10 @@
     "react:dev": "react-scripts start",
     "react:build": "react-scripts build",
     "react:test": "react-scripts test",
-    "electron:dev": "wait-on tcp:3000 && electron ."
+    "electron:dev": "wait-on tcp:3000 && electron .",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "eslintConfig": {
     "extends": [
@@ -53,11 +56,44 @@
     ]
   },
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/maker-deb": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-zip": "^6.0.0-beta.63",
     "@types/uuid": "^8.3.4",
     "autoprefixer": "^10.4.5",
     "concurrently": "^7.1.0",
+    "electron": "^18.2.0",
     "postcss": "^8.4.13",
     "tailwindcss": "^3.0.24",
     "wait-on": "^6.0.1"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "gztracker"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }
