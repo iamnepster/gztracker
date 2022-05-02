@@ -25,13 +25,17 @@ export default function Times() {
         </div>
       </header>
       <main className="w-full px-8 scroll-container">
+        <div className="w-full px-2 flex justify-between text-slate-500">
+          <span>date</span>
+          <span>hh:mm:ss</span>
+        </div>
         {(performedWorkList || []).map((performedWork: any) => (
           <div
             key={performedWork.id}
             className="w-full py-2 px-4 my-2 flex justify-between rounded-md bg-cyan-600"
           >
             <span>{dayjs(performedWork.date).format("DD MMM YYYY")}</span>
-            <span>{formatTime(performedWork.time)}h</span>
+            <span>{formatTime(performedWork.time)}</span>
           </div>
         ))}
       </main>

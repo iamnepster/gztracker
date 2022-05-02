@@ -1,5 +1,10 @@
 import create from "zustand"
 import { PerformedWorkModel } from "../model/PerformedWorkModel"
+import PersistantStore from "./persistantStore"
+
+const persistentStore = new PersistantStore<PerformedWorkModel[]>(
+  "performedWorkList"
+)
 
 export interface PerformedWorkState {
   performedWorkList: PerformedWorkModel[]
@@ -7,9 +12,11 @@ export interface PerformedWorkState {
 }
 
 export const usePerformedWorkStore = create<PerformedWorkState>((set) => ({
-  performedWorkList: [],
+  performedWorkList: persistentStore.get(),
   addPerformedWork: (performedWork: PerformedWorkModel) =>
-    set((state) => ({
-      performedWorkList: [...state.performedWorkList, performedWork],
-    })),
+    set((state) => {
+      const newPerformedWorkList = [...state.performedWorkList, performedWork]
+      persistentStore.set(newPerformedWorkList)
+      return { performedWorkList: [...state.performedWorkList, performedWork] }
+    }),
 }))
