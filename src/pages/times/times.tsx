@@ -3,7 +3,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
 import "./times.css"
-import { usePerformedWorkStore } from "../../store/timeStore"
+import { usePerformedWorkStore } from "../../store/performedWorkStore"
 import { formatTime } from "../../utils/timerFormatter"
 import * as dayjs from "dayjs"
 

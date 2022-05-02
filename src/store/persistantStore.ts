@@ -1,15 +1,19 @@
-export default class PersistantStore<T> {
+export default class PersistentStorage<T> {
   // TODO: localStorage isn't async
   private localStorage = window.localStorage
 
   private key
 
-  constructor(key: string) {
+  constructor(key: string, defaultState?: T) {
     this.key = key
+
+    if (defaultState) {
+      this.set(defaultState)
+    }
   }
 
   get(): T {
-    return this.jsonToObject(this.localStorage.getItem(this.key) || "[]")
+    return this.jsonToObject(this.localStorage.getItem(this.key) || "{}")
   }
 
   set(object: T) {

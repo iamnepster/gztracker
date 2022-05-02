@@ -10,13 +10,21 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import { formatTime } from "../../utils/timerFormatter"
 import "./dashboard.css"
-import { usePerformedWorkStore } from "../../store/timeStore"
+import { usePerformedWorkStore } from "../../store/performedWorkStore"
 import { Link } from "react-router-dom"
 import { v4 as uuid } from "uuid"
 import * as dayjs from "dayjs"
 import { PerformedWorkModel } from "../../model/PerformedWorkModel"
+import { useEffect } from "react"
+import { useTimerStore } from "../../store/timerStore"
 
 export default function Dashboard() {
+  const addPerformedWork = usePerformedWorkStore(
+    (state) => state.addPerformedWork
+  )
+  const timerState = useTimerStore((state) => state.timer)
+  const setTimerState = useTimerStore((state) => state.setTimerState)
+
   const {
     timer,
     isActive,
@@ -25,9 +33,11 @@ export default function Dashboard() {
     handleStop,
     handleResume,
     handleReset,
-  } = useTimer(0)
-  const addPerformedWork = usePerformedWorkStore(
-    (state) => state.addPerformedWork
+  } = useTimer(timerState)
+
+  useEffect(
+    () => setTimerState({ timer, isActive, isPaused }),
+    [timer, isActive, isPaused, setTimerState]
   )
 
   const handleSave = () => {

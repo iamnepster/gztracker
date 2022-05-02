@@ -1,10 +1,11 @@
 import { useState, useRef } from "react"
+import { TimerModel } from "../model/TimerModel"
 
-export default function useTimer(inititalState = 0) {
-  const [timer, setTimer] = useState(0)
-  const [isActive, setIsActive] = useState(false)
-  const [isPaused, setIsPaused] = useState(false)
-  const intervalRef = useRef(null)
+export default function useTimer(inititalState?: TimerModel) {
+  const [timer, setTimer] = useState(inititalState?.timer || 0)
+  const [isActive, setIsActive] = useState(inititalState?.isActive || false)
+  const [isPaused, setIsPaused] = useState(inititalState?.isPaused || false)
+  const intervalRef: any = useRef(null)
 
   const handleStart = () => {
     setIsActive(true)
