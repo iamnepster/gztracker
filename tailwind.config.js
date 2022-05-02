@@ -3,6 +3,7 @@ module.exports = {
   theme: {
     fontFamily: {
       digital: ["digital-7-mono"],
+      "encode-sans": ["encode-sans"],
     },
     extend: {},
   },

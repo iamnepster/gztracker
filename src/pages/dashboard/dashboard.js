@@ -10,8 +10,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import { formatTime } from "../../utils/timerFormatter"
 import "./dashboard.css"
-import { useTimeStore } from "../../store/timeStore"
+import { usePerformedWorkStore } from "../../store/timeStore"
 import { Link } from "react-router-dom"
+import { v4 as uuid } from "uuid"
 import dayjs from "dayjs"
 
 export default function Dashboard() {
@@ -24,13 +25,19 @@ export default function Dashboard() {
     handleResume,
     handleReset,
   } = useTimer(0)
-  const addTime = useTimeStore((state) => state.addTime)
+  const addPerformedWork = usePerformedWorkStore(
+    (state) => state.addPerformedWork
+  )
 
   const handleSave = () => {
-    addTime({
-      time: timer,
-      date: dayjs().format("DD MMM YYYY"),
-    })
+    const performedWork = {
+      id: uuid(),
+      timeInSeconds: timer,
+      date: dayjs().format(),
+    }
+
+    addPerformedWork(performedWork)
+    console.log(performedWork)
     handleReset()
   }
 

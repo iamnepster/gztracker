@@ -1,6 +1,7 @@
 import create from "zustand"
 
-export const useTimeStore = create((set) => ({
-  times: [],
-  addTime: (time) => set((state) => ({ times: [...state.times, time] })),
+export const usePerformedWorkStore = create((set) => ({
+  performedWorkList: [],
+  addPerformedWork: (time) =>
+    set((state) => ({ performedWorkList: [...state.performedWorkList, time] })),
 }))
