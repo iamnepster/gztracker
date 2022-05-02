@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import useTimer from "../../hooks/useTimer"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -13,7 +13,8 @@ import "./dashboard.css"
 import { usePerformedWorkStore } from "../../store/timeStore"
 import { Link } from "react-router-dom"
 import { v4 as uuid } from "uuid"
-import dayjs from "dayjs"
+import * as dayjs from "dayjs"
+import { PerformedWorkModel } from "../../model/PerformedWorkModel"
 
 export default function Dashboard() {
   const {
@@ -30,9 +31,9 @@ export default function Dashboard() {
   )
 
   const handleSave = () => {
-    const performedWork = {
+    const performedWork: PerformedWorkModel = {
       id: uuid(),
-      timeInSeconds: timer,
+      time: timer,
       date: dayjs().format(),
     }
 

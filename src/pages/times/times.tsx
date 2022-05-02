@@ -1,11 +1,11 @@
-import React from "react"
+import * as React from "react"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
 import "./times.css"
 import { usePerformedWorkStore } from "../../store/timeStore"
 import { formatTime } from "../../utils/timerFormatter"
-import dayjs from "dayjs"
+import * as dayjs from "dayjs"
 
 export default function Times() {
   const performedWorkList = usePerformedWorkStore(
@@ -25,13 +25,13 @@ export default function Times() {
         </div>
       </header>
       <main className="w-full px-8 scroll-container">
-        {(performedWorkList || []).map((performedWork) => (
+        {(performedWorkList || []).map((performedWork: any) => (
           <div
             key={performedWork.id}
             className="w-full py-2 px-4 my-2 flex justify-between rounded-md bg-cyan-600"
           >
             <span>{dayjs(performedWork.date).format("DD MMM YYYY")}</span>
-            <span>{formatTime(performedWork.timeInSeconds)}h</span>
+            <span>{formatTime(performedWork.time)}h</span>
           </div>
         ))}
       </main>

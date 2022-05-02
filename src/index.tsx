@@ -1,11 +1,11 @@
-import React from "react"
-import ReactDOM from "react-dom/client"
+import * as React from "react"
+import * as ReactDOM from "react-dom/client"
 import Times from "./pages/times/times"
 import Dashboard from "./pages/dashboard/dashboard"
 import "./index.css"
 import { HashRouter, Route, Routes } from "react-router-dom"
 
-const root = ReactDOM.createRoot(document.getElementById("root"))
+const root = ReactDOM.createRoot(document.getElementById("root")!!)
 
 root.render(
   <React.StrictMode>
