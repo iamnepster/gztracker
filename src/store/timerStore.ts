@@ -1,6 +1,6 @@
 import create from "zustand"
+import PersistentStorage from "./persistentStorage"
 import { TimerModel } from "../model/TimerModel"
-import PersistentStorage from "./persistantStore"
 
 const timerStorage = new PersistentStorage<TimerModel>("timerState")
 

@@ -55,6 +55,9 @@ export default function Dashboard() {
       date: dayjs().format(),
     }
 
+    // @ts-ignore
+    window.electronApi.persistData(performedWork)
+
     addPerformedWork(performedWork)
     console.log(performedWork)
     handleReset()

@@ -1,14 +1,13 @@
 export default class PersistentStorage<T> {
-  // TODO: localStorage isn't async
   private localStorage = window.localStorage
 
   private key
 
-  constructor(key: string, defaultState?: T) {
+  constructor(key: string, initialValue?: T) {
     this.key = key
 
-    if (defaultState) {
-      this.set(defaultState)
+    if (initialValue) {
+      this.set(initialValue)
     }
   }
 
